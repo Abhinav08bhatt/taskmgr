@@ -1,4 +1,4 @@
-# taskmgr version 1.0 (`taskmgr.py`)
+# `taskmgr.py`
 Solution for the [task-tracker](https://roadmap.sh/projects/task-tracker) challenge from [roadmap.sh](https://roadmap.sh).
 
 ## How to run
@@ -7,25 +7,46 @@ Clone the repository and run the following command:
 git clone https://github.com/Abhinav08bhatt/taskmgr
 cd task-tracker
 ```
-## Example CLI commands :
+
+## CLI commands :
 
 #### 1. Add a task :
+- Base command :
 ```bash
     python taskmgr.py add "title"
 ```
-- `title` : str : positional
-##### Add a task with a mark : 
+- Other commands :
 ```bash
-    python taskmgr.py add "title" --mark "mark"
+    python taskmgr.py add "title" --status "status"
+```
+```bash
+    python taskmgr.py add "title" --priority "priority"
+```
+```bash
+    python taskmgr.py add "title" --status "status" --priority "priority"
 ```
 - `title` : str : positional
-- `mark` : str : optional (done,todo,in-progress)
+- `status` : str : optional (done,todo,in-progress)
+- `priority` : str : optional (low,normal,important)
+
 #### 2. Update a task:
 ```bash
     python taskmgr.py update task_id "new_title"
 ```
+- Other commands :
+```bash
+    python taskmgr.py update task_id --status "status"
+```
+```bash
+    python taskmgr.py update task_id --priority "priority"
+``` 
+```bash
+    python taskmgr.py update task_id "new_title --status "status" --priority "priority"
+```
 - `task_id` : int : positional
 - `new_title` : str : positional
+- `status` : str : optional (done,todo,in-progress)
+- `priority` : str : optional (low,normal,important)
 #### 3. Delete a task:
 ```bash
     python taskmgr.py delete task_id
@@ -35,28 +56,31 @@ cd task-tracker
 ```bash
     python taskmgr.py list
 ```
-###### List task by status:
+- Other commands :
 ```bash
-    python taskmgr.py list --filter "mark"
+    python taskmgr.py list --filter "status"
 ```
-- `mark` : str : optional (done,todo,in-progress)
+- `status` : str : optional (done,todo,in-progress)
 
+## Version Info :
 
-## Version 1.0 must support these actions : (`subparsers`)
+<details><summary><strong>Version 1.0</strong></summary>
+
+#### Supported actions : (`subparsers`)
 - Add a task (`add`)
 - Update a task (`update`)
 - Delete a task (`delete`)
-- list tasks (`list`)
-- Mark a task as:(`--mark`) 
+- List tasks (`list`)
+- Mark a task as:(`--status`) 
     - todo (default)
     - done 
     - in-progress
-- list tasks filtered by: (`--filter`)
-    - todo (default)
+- List tasks filtered by: (`--filter`)
+    - todo
     - done
     - in-progress
 
-## Data Structure using in version 1.0:
+#### Data Structure used in version 1.0: (`json`)
 ```json
 [
     {
@@ -71,4 +95,62 @@ cd task-tracker
     }
 ]
 ```
+</details>
 
+---
+
+<details><summary><strong>Version 2.0</strong> (latest)</summary>
+
+#### Required module : `rich`
+- Windows , Linux , Mac
+```bash
+    pip install rich
+```
+- Arch
+```
+    sudo pacman -S python-rich
+```        
+
+#### What's new?
+
+- ##### Features added :
+    - We can prioritize a task. (low,normal,important)
+    - We can filter the tasks based on their priority.
+    - The table format now looks beautiful. (cross-platform)
+        - thanks to `rich` library in python
+
+- ##### Changes made :
+    - Introduced the **sqlite** database
+
+#### Supported actions : (`subparsers`)
+- Add a task (`add`)
+- Update a task (`update`)
+- Delete a task (`delete`)
+- List tasks (`list`)
+- Mark a task as: (`--status`) 
+    - todo (default)
+    - done 
+    - in-progress
+- Priorities a task as: (`--priority`)
+    - low
+    - normal (default)
+    - important
+- List tasks filtered by: (`--filter`)
+    - todo
+    - done
+    - in-progress
+    - low 
+    - normal
+    - important
+
+#### Data Structure used in version 2.0: (`sqlite`)
+```sql
++----+-------------------+--------------+-----------+
+| id | title             | status       | priority  |
++----+-------------------+--------------+-----------+
+| 1  | Buy Eggs          | todo         | normal    |
+| 2  | Learn Python      | in-progress  | important |
+| 3  | Clean room        | done         | low       |
++----+-------------------+--------------+-----------+
+```
+</details>
