@@ -38,17 +38,11 @@
     python taskmgr.py delete task_id
 ```
 - `task_id` : int : positional
-#### 4. Mark a task:
-```py 
-    python taskmgr.py task_id --mark "mark"
-```
-- `task_id` : int : positional
-- `mark` : str : optional (done,todo,in-progress)
-#### 5. List all task:
+#### 4. List all task:
 ```py
     python taskmgr.py list
 ```
-#### 6. List task by status:
+###### List task by status:
 ```py
     python taskmgr.py list --filter "mark"
 ```
