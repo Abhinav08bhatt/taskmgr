@@ -97,6 +97,8 @@ sudo pacman -S python-rich
 ```
 </details>
 
+---
+
 ## CLI commands :
 
 #### 1. Add a task :
