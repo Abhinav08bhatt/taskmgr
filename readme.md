@@ -7,6 +7,8 @@ Solution for the [task-tracker](https://roadmap.sh/projects/task-tracker) challe
 Clone the repository and run the following command:
 ```bash
 git clone https://github.com/Abhinav08bhatt/taskmgr.git
+```
+```bash
 cd task-tracker
 ```
 
